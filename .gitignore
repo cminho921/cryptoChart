@@ -1,1 +1,5 @@
+##node module##
 node_modules
+
+##compiled dist##
+client/dist/bundle.js

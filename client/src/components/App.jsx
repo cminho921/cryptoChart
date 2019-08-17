@@ -1,14 +1,20 @@
 import React from 'react';
+import Layout from './LineGraph.jsx'
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      coinData : []
+      coinData : null,
     }
+    this.fetchData = this.fetchData.bind(this);
   }
 
   componentDidMount() {
+    this.fetchData();
+  }
+
+  fetchData() {
     fetch('https://api.coindesk.com/v1/bpi/historical/close.json')
       .then(res => {
         if (res.status !== 200) {
@@ -24,11 +30,14 @@ class App extends React.Component {
         log('Request failed', error)
       });
   }
-
+  //apply memcache
   render() {
+    const { coinData } = this.state;
+    console.log('1', coinData);
     return (
       <div>
-        <div>{this.state.coinData.disclaimer}</div>
+        <div>Bitcoin currency</div>
+        {coinData && <Layout coinData={coinData.bpi}/>}
       </div>
     )
   }

@@ -43,7 +43,21 @@ class Layout extends React.Component {
           fontColor: 'black',
           padding: 10
         },
-        
+        tooltips: {
+          intersect: false,
+          mode: 'index',
+          callbacks: {
+            label: function(tooltipItem, chartDataInput) {
+              let label = chartDataInput.datasets[tooltipItem.datasetIndex].label || '';
+
+              if (label) {
+                label += ': ';
+              }
+              label += tooltipItem.value
+              return label;
+            }
+          }
+        }
       }
     })
   }

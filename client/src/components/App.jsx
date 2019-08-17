@@ -22,7 +22,6 @@ class App extends React.Component {
           return;
         }
         res.json().then(data => {
-          console.log(data);
           this.setState({coinData: data})
         });
       })
@@ -33,10 +32,8 @@ class App extends React.Component {
   //apply memcache
   render() {
     const { coinData } = this.state;
-    console.log('1', coinData);
     return (
       <div>
-        <div>Bitcoin currency</div>
         {coinData && <Layout coinData={coinData.bpi}/>}
       </div>
     )
